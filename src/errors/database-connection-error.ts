@@ -1,5 +1,6 @@
 export class DatabaseConnectionError extends Error {
-  reason = 'Error connecting to the database'
+  reason = 'Error connecting to the database';
+  statusCode= 500;
   constructor(){
     super();
     //need to call super to invoke the base class
@@ -11,5 +12,11 @@ export class DatabaseConnectionError extends Error {
 
     //only because we are extending a built-in class
     Object.setPrototypeOf(this, DatabaseConnectionError.prototype)
+  }
+
+  serializeErrors(){
+    return [
+      { message: this.reason}
+    ]
   }
 }
