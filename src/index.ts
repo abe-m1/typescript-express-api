@@ -4,7 +4,7 @@ import express from 'express';
 import 'express-async-errors';
 import mongoose from 'mongoose';
 import cookieSession from 'cookie-session';
-
+require('dotenv').config();
 import {json } from 'body-parser';
 import { currentUserRouter } from './routes/current-user';
 import { signinRouter } from './routes/signin';
@@ -19,7 +19,8 @@ const app = express();
 app.use(json());
 app.use(cookieSession({
   signed: false,
-  secure: true,
+  //switch to true when using https
+  secure: false,
 }))
 
 app.use(currentUserRouter);
