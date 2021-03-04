@@ -31,11 +31,14 @@ const start = async () => {
     throw new Error('MONGO_URI must be defined');
   }
   try {
+  
     await mongoose.connect(process.env.MONGODB_URI, {
       useNewUrlParser: true,
       useUnifiedTopology: true,
       useCreateIndex: true
     });
+
+    console.log('connected')
 } catch(err){
   console.log(err)
 }
