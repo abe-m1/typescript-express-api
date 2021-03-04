@@ -20,6 +20,7 @@ app.use(cookieSession({
   signed: false,
   //switch to true when using https
   secure: false,
+  // secure: process.env.NODE_ENV !== 'test'
 }))
 
 app.use(currentUserRouter);
