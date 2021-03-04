@@ -35,6 +35,9 @@ app.all('*', () => {
 app.use(errorHandler);
 
 const start = async () => {
+  if (!process.env.JWT_SECRET){
+    throw new Error('JWT_SECRET must be defined')
+  }
   if (!process.env.MONGODB_URI) {
     throw new Error('MONGO_URI must be defined');
   }

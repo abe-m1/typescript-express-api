@@ -31,6 +31,27 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: true
   }
+}, {
+  //if JS object is being serialized , JSON.stringify() looks for a method
+  //called toJSON and returns the serialized the return value from toJSON()
+  //instead of the original object
+  toJSON: {
+    //defined as an object
+
+    //doc - mongoose document being converted
+    //ret - properties to modify, ret for returned
+    transform(doc, ret){
+      //remove properties we don't want to return
+      delete ret.password;
+      delete ret.__v;
+
+      //want to return 'id' instead of '_id', which is very
+      //specific to mongo
+      ret.id = doc._id;
+      delete ret._id;
+
+    }
+  }
 });
 
 //mongoose middleware function

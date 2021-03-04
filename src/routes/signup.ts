@@ -5,6 +5,7 @@ import { BadRequestError } from '../errors/bad-request-error';
 import { RequestValidationError } from '../errors/request-validation-error';
 import { User } from '../models/user';
 
+
 const router = express.Router();
 
 router.post('/api/users/signup', [
@@ -39,8 +40,8 @@ async (req: Request, res: Response) =>  {
   const userJwt = jwt.sign({
     id: user.id,
     email: user.email
-  }, 'asdf');
-  
+  }, process.env.JWT_SECRET!);
+
   // Store JWT on the sesssion object
   req.session = {
     jwt: userJwt
