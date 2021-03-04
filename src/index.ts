@@ -2,6 +2,8 @@ import express from 'express';
 
 //handles async with express
 import 'express-async-errors';
+import mongoose from 'mongoose';
+
 import {json } from 'body-parser';
 import { currentUserRouter } from './routes/current-user';
 import { signinRouter } from './routes/signin';
@@ -24,6 +26,23 @@ app.all('*', () => {
 })
 app.use(errorHandler);
 
-app.listen(5000, ()=> {
-  console.log('listening on port 5000')
-})
+const start = async () => {
+  if (!process.env.MONGODB_URI) {
+    throw new Error('MONGO_URI must be defined');
+  }
+  try {
+    await mongoose.connect(process.env.MONGODB_URI, {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+      useCreateIndex: true
+    });
+} catch(err){
+  console.log(err)
+}
+
+  app.listen(5000, ()=> {
+    console.log('listening on port 5000')
+  });
+}
+
+start()
