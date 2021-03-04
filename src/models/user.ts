@@ -1,4 +1,5 @@
 import mongoose from 'mongoose';
+import { Password } from '../services/password';
 
 // an interface that describes the properties 
 // that are required to create a new user
@@ -31,6 +32,25 @@ const userSchema = new mongoose.Schema({
     required: true
   }
 });
+
+//mongoose middleware function
+userSchema.pre('save', async function(done){
+  //we need to call 'done' when we have done all the needed
+  //work inside this function
+
+  //must use function keyword , (not an arrow function - b/c then the 
+  //value of 'this' would be overwritten)
+  
+  //check and see if password has been modified
+  if (this.isModified('password')){
+    //will return true even when new user is created
+    const hashed = await Password.toHash(this.get('password'))
+    //'this.get' will get the user's password off the document
+    this.set('password', hashed)
+  }
+  done();
+  //call done after doing all the async work that was needed
+})
 
 //we will call function build instead of 'new User' 
 // inorder to get mongoose to work well with typescript
