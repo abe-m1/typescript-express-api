@@ -1,8 +1,10 @@
-export class DatabaseConnectionError extends Error {
+import { CustomError } from './custom-error'
+
+export class DatabaseConnectionError extends CustomError {
   reason = 'Error connecting to the database';
   statusCode= 500;
   constructor(){
-    super();
+    super('Error connecting to the database');
     //need to call super to invoke the base class
 
     //private will take the first property and assign it as a property
