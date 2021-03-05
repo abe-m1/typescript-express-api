@@ -3,8 +3,10 @@ import { app } from '../../app';
 import { signup } from '../../test/setup';
 import { Ticket } from '../../models/ticket';
 
-const createTicket = async () => {
-  const cookie = await signup();
+
+
+const createTicket = async (cookie: any) => {
+
   return request(app)
     .post('/api/tickets')
     .set('Cookie', cookie)
@@ -15,12 +17,14 @@ const createTicket = async () => {
 }
 
 it('can fetch a list of tickets', async () => {
-  await createTicket();
-  await createTicket();
-  await createTicket();
+  const cookie = await signup();
+
+  await createTicket(cookie);
+  await createTicket(cookie);
+  await createTicket(cookie);
 
   const response = await request(app)
-    .get('api/tickets')
+    .get('/api/tickets')
     .send()
     .expect(200);
 

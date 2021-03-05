@@ -35,8 +35,8 @@ afterAll(async () => {
 //if decide to change from global , can just export function
 //and import it where needed
 
-export const signup = async () => {
-  const email = 'test@test.com';
+export const signup = async (initialEmail: string = 'test@test.com') => {
+  const email = initialEmail;
   const password = 'password';
 
   const response = await request(app)

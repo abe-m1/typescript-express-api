@@ -12,6 +12,7 @@ import { signupRouter } from './routes/signup';
 import { createTicketRouter } from './routes/new';
 import { showTicketRouter } from './routes/show';
 import { indexTicketRouter } from './routes/index';
+import { updateTicketRouter } from './routes/update';
 
 import { errorHandler } from './middlewares/error-handler';
 import { NotFoundError } from './errors/not-found-error';
@@ -39,6 +40,7 @@ app.use(signupRouter);
 app.use(createTicketRouter);
 app.use(showTicketRouter);
 app.use(indexTicketRouter);
+app.use(updateTicketRouter);
 
 //all watches for all types of requests
 app.all('*', () => {
