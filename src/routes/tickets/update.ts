@@ -1,12 +1,12 @@
 import express, { Request, Response } from 'express';
 import { body } from 'express-validator';
-import { validateRequest } from '../middlewares/validate-request';
-import { NotFoundError } from '../errors/not-found-error';
-import { requireAuth } from '../middlewares/require-auth';
-import { currentUser } from '../middlewares/current-user';
-import { NotAuthorizedError } from '../errors/not-authorized-error';
-import { Ticket } from '../models/ticket';
-import { currentUserRouter } from './current-user';
+import { validateRequest } from '../../middlewares/validate-request';
+import { NotFoundError } from '../../errors/not-found-error';
+import { requireAuth } from '../../middlewares/require-auth';
+import { currentUser } from '../../middlewares/current-user';
+import { NotAuthorizedError } from '../../errors/not-authorized-error';
+import { Ticket } from '../../models/ticket';
+import { currentUserRouter } from '../current-user';
 
 const router = express.Router();
 

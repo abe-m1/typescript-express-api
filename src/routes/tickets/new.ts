@@ -1,9 +1,9 @@
 import express, { Request, Response } from 'express';
 import { body } from 'express-validator';
-import { requireAuth } from '../middlewares/require-auth';
-import { currentUser } from '../middlewares/current-user';
-import { validateRequest } from '../middlewares/validate-request';
-import { Ticket } from '../models/ticket';
+import { requireAuth } from '../../middlewares/require-auth';
+import { currentUser } from '../../middlewares/current-user';
+import { validateRequest } from '../../middlewares/validate-request';
+import { Ticket } from '../../models/ticket';
 
 const router = express.Router();
 

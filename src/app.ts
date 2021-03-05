@@ -9,10 +9,10 @@ import { currentUserRouter } from './routes/current-user';
 import { signinRouter } from './routes/signin';
 import { signoutRouter } from './routes/signout';
 import { signupRouter } from './routes/signup';
-import { createTicketRouter } from './routes/new';
-import { showTicketRouter } from './routes/show';
-import { indexTicketRouter } from './routes/index';
-import { updateTicketRouter } from './routes/update';
+import { createTicketRouter } from './routes/tickets/new';
+import { showTicketRouter } from './routes/tickets/show';
+import { indexTicketRouter } from './routes/tickets/index';
+import { updateTicketRouter } from './routes/tickets/update';
 
 import { errorHandler } from './middlewares/error-handler';
 import { NotFoundError } from './errors/not-found-error';

@@ -1,6 +1,6 @@
 import express, { Request, Response, NextFunction } from 'express';
-import { Ticket } from '../models/ticket';
-import { NotFoundError } from '../errors/not-found-error';
+import { Ticket } from '../../models/ticket';
+import { NotFoundError } from '../../errors/not-found-error';
 
 const router = express.Router();
 
