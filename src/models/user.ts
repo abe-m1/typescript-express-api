@@ -12,7 +12,7 @@ interface UserAttrs {
 
 // an interface that describes the properties
 // that a User model has
-interface UserModel extends mongoose.Model<UserDoc>{
+interface UserModel extends mongoose.Model<UserDoc> {
   build(attrs: UserAttrs): UserDoc;
 }
 
@@ -30,6 +30,9 @@ const userSchema = new mongoose.Schema({
   password: {
     type: String,
     required: true
+  },
+  location: {
+    type: String
   }
 }, {
   //if JS object is being serialized , JSON.stringify() looks for a method
@@ -40,7 +43,7 @@ const userSchema = new mongoose.Schema({
 
     //doc - mongoose document being converted
     //ret - properties to modify, ret for returned
-    transform(doc, ret){
+    transform(doc, ret) {
       //remove properties we don't want to return
       delete ret.password;
       delete ret.__v;
@@ -55,15 +58,15 @@ const userSchema = new mongoose.Schema({
 });
 
 //mongoose middleware function
-userSchema.pre('save', async function(done){
+userSchema.pre('save', async function (done) {
   //we need to call 'done' when we have done all the needed
   //work inside this function
 
   //must use function keyword , (not an arrow function - b/c then the 
   //value of 'this' would be overwritten)
-  
+
   //check and see if password has been modified
-  if (this.isModified('password')){
+  if (this.isModified('password')) {
     //will return true even when new user is created
     const hashed = await Password.toHash(this.get('password'))
     //'this.get' will get the user's password off the document
@@ -78,7 +81,7 @@ userSchema.pre('save', async function(done){
 
 //if we use 'new User' we won't have effective typechecking with TS
 
-userSchema.statics.build =  (attrs: UserAttrs) => {
+userSchema.statics.build = (attrs: UserAttrs) => {
   //this is just an extra step
   return new User(attrs)
 }
