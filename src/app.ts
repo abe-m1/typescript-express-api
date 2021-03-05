@@ -15,6 +15,7 @@ import { indexTicketRouter } from './routes/tickets/index';
 import { updateTicketRouter } from './routes/tickets/update';
 
 import { indexUserRouter } from './routes/users/index';
+import { updateUsertRouter } from './routes/users/update';
 
 import { errorHandler } from './middlewares/error-handler';
 import { NotFoundError } from './errors/not-found-error';
@@ -45,6 +46,7 @@ app.use(indexTicketRouter);
 app.use(updateTicketRouter);
 
 app.use(indexUserRouter);
+app.use(updateUsertRouter);
 
 //all watches for all types of requests
 app.all('*', () => {
