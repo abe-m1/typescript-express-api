@@ -10,10 +10,12 @@ import { signinRouter } from './routes/signin';
 import { signoutRouter } from './routes/signout';
 import { signupRouter } from './routes/signup';
 import { createTicketRouter } from './routes/new';
+import { showTicketRouter } from './routes/show';
 
 import { errorHandler } from './middlewares/error-handler';
 import { NotFoundError } from './errors/not-found-error';
 import { currentUser } from './middlewares/current-user';
+
 
 const app = express();
 // if you are using a proxy
@@ -34,6 +36,7 @@ app.use(signinRouter);
 app.use(signoutRouter);
 app.use(signupRouter);
 app.use(createTicketRouter);
+app.use(showTicketRouter);
 
 //all watches for all types of requests
 app.all('*', () => {
