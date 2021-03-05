@@ -6,7 +6,7 @@ import { requireAuth } from '../../middlewares/require-auth';
 import { currentUser } from '../../middlewares/current-user';
 import { NotAuthorizedError } from '../../errors/not-authorized-error';
 import { Ticket } from '../../models/ticket';
-import { currentUserRouter } from '../current-user';
+import { currentUserRouter } from '../auth/current-user';
 
 const router = express.Router();
 
