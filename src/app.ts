@@ -1,4 +1,4 @@
-import express from 'express';
+import express, { Request, Response } from 'express';
 
 //handles async with express
 import 'express-async-errors';
@@ -51,6 +51,27 @@ app.use(indexUserRouter);
 app.use(updateUsertRouter);
 app.use(stockQuoteRouter)
 app.use(testRouter)
+
+app.get('/', (req: Request, res: Response) => {
+  res.send(`<h1> Stock Market API </h>
+  <h3>Routes</h3>
+  <p>GET ‘/api/users’</p>
+
+  <p>POST ‘/api/users/signup’ {email, password}</p>
+
+  <p>POST ‘/api/users/signout’</p>
+
+  <p>POST ‘/api/users/signup’ {email, password}</p>
+
+  <p>GET ‘/api/stock/:symbol</p>
+
+  <h3>Routes - Protected </h3>
+  <p>GET ‘api/users/currentuser</p>
+
+  <p>PUT ‘/api/users/:id’</p>
+  
+  `)
+})
 
 //all watches for all types of requests
 app.all('*', () => {
