@@ -53,7 +53,7 @@ app.use(stockQuoteRouter)
 app.use(testRouter)
 
 app.get('/', (req: Request, res: Response) => {
-  res.send(`<h1> Stock Market API </h>
+  res.send(`<h1> Stock Market API </h1>
   <h3>Routes</h3>
   <p>GET ‘/api/users’</p>
 
