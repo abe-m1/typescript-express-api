@@ -2,6 +2,8 @@ import mongoose from 'mongoose';
 import { formatDiagnostic } from 'typescript';
 import { app } from './app';
 
+const port: string | number = process.env.PORT || 5000;
+
 const start = async () => {
   if (!process.env.JWT_SECRET) {
     throw new Error('JWT_SECRET must be defined')
@@ -22,8 +24,8 @@ const start = async () => {
     console.log(err)
   }
 
-  app.listen(5000, () => {
-    console.log('listening on port 5000')
+  app.listen(port, () => {
+    console.log(`listening on port ${port}`)
   });
 }
 
