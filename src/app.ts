@@ -17,6 +17,7 @@ import { updateTicketRouter } from './routes/tickets/update';
 import { indexUserRouter } from './routes/users/index';
 import { updateUsertRouter } from './routes/users/update';
 import { stockQuoteRouter } from './routes/stocks/quote';
+import { testRouter } from './routes/blog/index';
 
 import { errorHandler } from './middlewares/error-handler';
 import { NotFoundError } from './errors/not-found-error';
@@ -49,6 +50,7 @@ app.use(updateTicketRouter);
 app.use(indexUserRouter);
 app.use(updateUsertRouter);
 app.use(stockQuoteRouter)
+app.use(testRouter)
 
 //all watches for all types of requests
 app.all('*', () => {
