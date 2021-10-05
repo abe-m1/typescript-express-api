@@ -4,6 +4,7 @@ import express, { Request, Response } from 'express';
 import 'express-async-errors';
 import cookieSession from 'cookie-session';
 require('dotenv').config();
+const cors = require('cors')
 import { json } from 'body-parser';
 import { currentUserRouter } from './routes/auth/current-user';
 import { signinRouter } from './routes/auth/signin';
@@ -25,6 +26,13 @@ import { currentUser } from './middlewares/current-user';
 
 
 const app = express();
+
+var corsOptions = {
+  origin: 'http://localhost:4200',
+  optionsSuccessStatus: 200 // For legacy browser support
+}
+
+app.use(cors(corsOptions))
 // if you are using a proxy
 // app.set('trust proxy', true)
 app.use(json());
@@ -37,6 +45,7 @@ app.use(cookieSession({
 
 //FIX set current user WATCH
 // app.use(currentUser);
+
 
 app.use(currentUserRouter);
 app.use(signinRouter);
